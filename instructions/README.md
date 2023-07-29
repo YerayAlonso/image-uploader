@@ -53,6 +53,7 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 - [Svelte](https://svelte.dev/)
 - [SvelteKit](https://kit.svelte.dev/)
 - [Tailwind](https://tailwindcss.com/)
+- [Cloudinary](https://cloudinary.com/)
 
 ## Features
 
