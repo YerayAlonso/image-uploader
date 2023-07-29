@@ -1,9 +1,33 @@
+<script>
+  import Dropzone from 'svelte-file-dropzone/Dropzone.svelte'
+
+  export let files
+
+  const dragEnter = (e) => {
+    e.detail.dragEvent.target.classList.add('scale-105')
+  }
+
+  const dragLeave = (e) => {
+    e.detail.dragEvent.target.classList.remove('scale-105')
+  }
+
+  const handleDrop = (e) => {
+    files = e.detail.acceptedFiles
+  }
+</script>
+
 <h1 class="text-lg text-[var(--gray-2)]">Upload your image</h1>
 
 <h2 class="text-[.6rem] text-[var(--gray-3)] pt-4">File should be Jpeg, Png,...</h2>
 
-<div
-  class="container flex flex-col justify-center items-center rounded-xl border border-dashed border-[#97bef4] bg-[#f6f8fb] w-80 h-56 mx-auto mt-8 space-y-9"
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<Dropzone
+  on:drop={handleDrop}
+  on:dragenter={dragEnter}
+  on:dragleave={dragLeave}
+  accept=".jpg, .jpeg, .png"
+  multiple={false}
+  containerClasses="flex flex-col justify-center items-center rounded-xl border border-dashed border-[#97bef4] bg-[#f6f8fb] w-80 h-56 mx-auto mt-8 space-y-9 hover:bg-opacity-30 hover:scale-105 transition-all"
 >
   <div>
     <svg
@@ -103,10 +127,15 @@
       />
     </svg>
   </div>
+
   <div class="text-xs text-[var(--gray-4)]">Drag & Drop your image here</div>
-</div>
+</Dropzone>
 
 <div class="text-xs text-[var(--gray-4)] pt-5">Or</div>
-<button class="button text-xs bg-[#2F80ED] rounded-lg text-white mt-5 px-4 py-2"
-  >Choose a file</button
+
+<label
+  class="button text-xs bg-[#2F80ED] rounded-lg text-white tracking-normal mt-5 px-4 py-2 hover:scale-105 transition-all cursor-pointer"
 >
+  <input class="hidden" accept="image/png, image/jpeg" bind:files id="file" type="file" />
+  Choose a file
+</label>

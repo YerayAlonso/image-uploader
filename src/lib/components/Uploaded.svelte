@@ -1,6 +1,14 @@
 <script>
-  export let imageSrc =
-    'https://i2.wp.com/www.onegreenplanet.org/wp-content/uploads/2018/01/vegan-grocery.jpg'
+  export let imageSrc
+  let showToast = false
+
+  const handleClick = () => {
+    navigator.clipboard.writeText(imageSrc)
+    showToast = true
+    setTimeout(() => {
+      showToast = false
+    }, 2000)
+  }
 </script>
 
 <div>
@@ -24,7 +32,14 @@
 
 <div class="bg-[#F6F8FB] border border-[var(--gray-5)] rounded-lg">
   <span class="text-[.6rem] text-[var(--gray-2)] px-2">{imageSrc.substring(0, 35) + '\u2026'}</span>
-  <button class="button text-xs bg-[#2F80ED] rounded-lg text-white my-1 mr-1 px-4 py-2"
-    >Copy link</button
+  <button
+    on:click={handleClick}
+    class="button text-xs bg-[#2F80ED] rounded-lg text-white my-1 mr-1 px-4 py-2 hover:scale-105 transition-all"
   >
+    Copy link
+  </button>
 </div>
+
+{#if showToast}
+  <div class="text-xs text-[var(--gray-2)] pt-2">Copied to clipboard!</div>
+{/if}
