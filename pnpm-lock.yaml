@@ -12,7 +12,7 @@ importers:
         specifier: 5.0.5
         version: 5.0.5
       svelte-file-dropzone:
-        specifier: ^2.0.8
+        specifier: 2.0.8
         version: 2.0.8(svelte@4.1.1)
     devDependencies:
       '@sveltejs/adapter-auto':
